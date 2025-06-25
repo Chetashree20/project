@@ -31,7 +31,7 @@ pipeline {
     stage('Configure Database Connection') {
       agent { label 'built-in' }
       steps {
-        dir('/mnt/project') {
+        dir('/mnt/project/target/LoginWebApp') {
           // Updated database URL and credentials in userRegistration.jsp
           sh '''
           sed -i 's|jdbc:mysql://localhost:3306/test", "root", "root"|jdbc:mysql://database-1.cmfhccpboiuu.ap-south-1.rds.amazonaws.com:3306/test", "admin", "admin123456"|g' userRegistration.jsp
@@ -41,7 +41,7 @@ pipeline {
     }
 
     stage('Deploy WAR to Tomcat') {
-      agent { label 'slave-1' }
+      agent { label 'slave1' }
       steps {
         dir('/mnt/project/target') {
           unstash name: 'warfile'
