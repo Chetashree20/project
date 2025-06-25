@@ -38,19 +38,18 @@ pipeline {
       }
     }
 
-    stage('Deploy WAR to Tomcat') {
-      agent { label 'slave1' }
-      steps {
-        unstash name: 'warfile'
-        sh '''
-          echo "Checking WAR files:"
-          ls -l target
-          cp target/*.war /mnt/apache-tomcat-10.1.42/webapps/
-          chmod -R 777 /mnt *
-          /mnt/apache-tomcat-10.1.42/bin/startup.sh
-        '''
-      }
-    }
+   stage('Deploy WAR to Tomcat') {
+  agent { label 'slave1' }
+  steps {
+    unstash name: 'warfile'
+    sh '''
+      cp target/LoginWebApp.war /mnt/apache-tomcat-10.1.42/webapps/
+      chmod 644 /mnt/apache-tomcat-10.1.42/webapps/LoginWebApp.war
+      /mnt/apache-tomcat-10.1.42/bin/startup.sh
+    '''
+  }
+}
+
 
   }
 }
