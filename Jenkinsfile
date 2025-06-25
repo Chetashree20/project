@@ -12,7 +12,7 @@ pipeline {
       agent { label 'built-in' } // Master node
       steps {
         dir('/mnt/project') {
-          git url: 'https://github.com/Shantanumajan6/project.git'
+          git url: 'https://github.com/Chetashree20/project.git'
         }
       }
     }
