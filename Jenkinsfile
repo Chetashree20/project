@@ -46,7 +46,7 @@ pipeline {
           echo "Checking WAR files:"
           ls -l target
           cp target/*.war /mnt/apache-tomcat-10.1.42/webapps/
-          chmod -R 777 /mnt/apache-tomcat-10.1.42
+          chmod -R 777 /mnt *
           /mnt/apache-tomcat-10.1.42/bin/startup.sh
         '''
       }
