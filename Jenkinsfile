@@ -11,7 +11,7 @@ pipeline {
     stage('Clone Git Repository') {
       agent { label 'built-in' } // Master node
       steps {
-        dir('/mnt/project') {
+        dir('/mnt') {
           git url: 'https://github.com/Chetashree20/project.git'
         }
       }
