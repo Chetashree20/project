@@ -43,7 +43,7 @@ pipeline {
     stage('Deploy WAR to Tomcat') {
       agent { label 'slave1' }
       steps {
-        dir('/mnt/project/target') {
+        dir('/mnt/project') {
           unstash name: 'warfile'
           sh '''
           cp *.war /mnt/apache-tomcat-10.1.42/webapps/
